@@ -44,15 +44,11 @@
 ### Варианты метрик
 
 1. **Относительная невязка (L2-норма, нормированная на сигнал)**  
-   $$
-   \Phi_{\text{rel}}(\mathbf{m}) = \frac{1}{N} \sum_{i=1}^{N} \left( \frac{d_i^{\text{calc}} - d_i^{\text{obs}}}{d_i^{\text{obs}}} \right)^2,
-   $$
+$$\Phi_{\text{rel}}(\mathbf{m}) = \frac{1}{N} \sum_{i=1}^{N} \left( \frac{d_i^{\text{calc}} - d_i^{\text{obs}}}{d_i^{\text{obs}}} \right)^2,$$
    где $N$ – число временных каналов. Подходит, когда сигнал меняется на порядки.
 
 2. **Логарифмическая невязка**  
-   $$
-   \Phi_{\text{log}}(\mathbf{m}) = \frac{1}{N} \sum_{i=1}^{N} \left( \log_{10} d_i^{\text{calc}} - \log_{10} d_i^{\text{obs}} \right)^2.
-   $$
+$$   \Phi_{\text{log}}(\mathbf{m}) = \frac{1}{N} \sum_{i=1}^{N} \left( \log_{10} d_i^{\text{calc}} - \log_{10} d_i^{\text{obs}} \right)^2.$$
    Она «выравнивает» веса для малых и больших сигналов и часто используется в ЗСБ.
 
 ### Задание
@@ -87,16 +83,12 @@
 
 В реальном ЗСБ поздние времена имеют гораздо более низкое отношение сигнал/шум. Введём **весовую матрицу** $W$ в целевую функцию:
 
-$$
-\Phi_W(\mathbf{m}) = \frac{1}{N} \sum_{i=1}^{N} w_i \left( \frac{d_i^{\text{calc}} - d_i^{\text{obs}}}{d_i^{\text{obs}}} \right)^2,
-$$
+$$\Phi_W(\mathbf{m}) = \frac{1}{N} \sum_{i=1}^{N} w_i \left( \frac{d_i^{\text{calc}} - d_i^{\text{obs}}}{d_i^{\text{obs}}} \right)^2,$$
 где $w_i$ — веса. Обычно $w_i = 1 / \sigma_i^2$, а $\sigma_i$ — среднеквадратичное отклонение шума в $i$-м временном канале.
 
 ### Модель шума для ЗСБ
 Предположим, что относительная погрешность растёт с временем:
-$$
-\sigma_i = \varepsilon_0 \cdot (t_i / t_0)^\alpha,
-$$
+$$\sigma_i = \varepsilon_0 \cdot (t_i / t_0)^\alpha,$$
 где $\varepsilon_0 = 0.02$ (2% на ранних временах), $t_0$ — первое время, $\alpha = 0.5$ или 1.  
 Для простоты можно задать $\sigma_i = 0.02$ для $t < 10^{-3}$ с, $\sigma_i = 0.05$ для $10^{-3} < t < 10^{-2}$ с, $\sigma_i = 0.1$ для $t > 10^{-2}$ с.
 
